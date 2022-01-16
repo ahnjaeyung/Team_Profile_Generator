@@ -1,10 +1,11 @@
 const inquirer = require('inquirer');
 const fs = require('fs');
 const pageTemplate = require('./src/page-template');
-const employee = require('./lib/Employee');
-const engineer = require('./lib/Engineer');
-const intern = require('./lib/Intern');
-const manager = require('./lib/Manager');
+const Employee = require('./lib/Employee');
+const Engineer = require('./lib/Engineer');
+const Intern = require('./lib/Intern');
+const Manager = require('./lib/Manager');
+let team = [];
 const managerPrompt = [
     {
         type: "input",
@@ -56,7 +57,7 @@ const engineerPrompt = [
     {
         type: "input",
         message: "Please enter the engineer's GitHub username.",
-        name: "engineerGithub"
+        name: "github"
     }
 ]; //end of engineerPrompt
 
@@ -86,6 +87,10 @@ const internPrompt = [
 function init() {
     inquirer.prompt(managerPrompt).then((answers) => {
         console.log(answers);
+        const manager = new Manager(answers.managerName, answers.managerId, answers.managerEmail, answers.officeNumber);
+        console.log(manager)
+        team.push(manager);
+        console.log(team);
         mainMenuPrompt();
     })
 } //end of init() function definition
@@ -102,7 +107,7 @@ function mainMenuPrompt() {
                 addIntern();
                 break;
             case "Finish building my team":
-                writeTeamPage();
+                writeTeamPage(team);
                 break;
             default:
                 console.log("Did not match any options")
@@ -124,8 +129,15 @@ function addIntern() {
     })
 } //end of addIntern() function definition
 
-function writeTeamPage(team) {
-    pageTemplate(team);
+function writeTeamPage(team) { 
+    const outputPage = pageTemplate(team);
+    fs.writeFile("./dist/index.html", outputPage,
+    (err) => {
+        if (err) {
+            console.log(err);
+        }
+        console.log("Successful!");
+    })
 } //end of writeTeamPage() function definition
 
 init()

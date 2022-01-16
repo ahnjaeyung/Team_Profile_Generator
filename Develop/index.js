@@ -129,6 +129,10 @@ function addEngineer() {
 function addIntern() {
     inquirer.prompt(internPrompt).then((answers) => {
         console.log(answers);
+        const intern = new Intern(answers.internName, answers.internId, answers.internEmail, answers.school);
+        console.log(intern);
+        team.push(intern);
+        console.log(team);
         mainMenuPrompt();
     })
 } //end of addIntern() function definition

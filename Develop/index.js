@@ -24,7 +24,7 @@ const managerPrompt = [
     {
         type: "input",
         message: "Please enter the team manager's office number.",
-        name: "managerOffice"
+        name: "officeNumber"
     }
 ]; //end of managerPrompt
 
@@ -94,7 +94,7 @@ function mainMenuPrompt() {
     inquirer.prompt(mainMenu)
     .then((answer) => {
         console.log(answer);
-        switch (answer) {
+        switch (answer.menuOption) {
             case "Add an engineer":
                 addEngineer();
                 break;
@@ -124,14 +124,8 @@ function addIntern() {
     })
 } //end of addIntern() function definition
 
-function writeTeamPage(teamList) {
-    fs.writeFile('projectREADME.md', markdownStr,
-        (err) => {
-            if (err) {
-                console.log(err);
-            }
-            console.log("Successful!");
-        })
-}
+function writeTeamPage(team) {
+    pageTemplate(team);
+} //end of writeTeamPage() function definition
 
 init()

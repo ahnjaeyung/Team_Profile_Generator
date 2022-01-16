@@ -80,7 +80,7 @@ const internPrompt = [
     {
         type: "input",
         message: "Please enter the intern's school.",
-        name: "internSchool"
+        name: "school"
     }
 ]; //end of internPrompt
 

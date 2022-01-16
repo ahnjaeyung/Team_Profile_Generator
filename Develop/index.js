@@ -116,15 +116,19 @@ function mainMenuPrompt() {
 } //end of mainMenuPrompt() function definition
 
 function addEngineer() {
-    inquirer.prompt(engineerPrompt).then((answer) => {
-        console.log(answer);
+    inquirer.prompt(engineerPrompt).then((answers) => {
+        console.log(answers);
+        const engineer = new Engineer(answers.engineerName, answers.engineerId, answers.engineerEmail, answers.github);
+        console.log(engineer);
+        team.push(engineer);
+        console.log(team);
         mainMenuPrompt();
     })
 } //end of addEngineer() function definition
 
 function addIntern() {
-    inquirer.prompt(internPrompt).then((answer) => {
-        console.log(answer);
+    inquirer.prompt(internPrompt).then((answers) => {
+        console.log(answers);
         mainMenuPrompt();
     })
 } //end of addIntern() function definition

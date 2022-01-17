@@ -1,5 +1,9 @@
+@import url('https://fonts.googleapis.com/css2?family=Shizuru&family=Work+Sans:wght@300&display=swap');
+
 body {
     background-color: cornsilk;
+    font-family: 'Shizuru', cursive;
+    font-family: 'Work Sans', sans-serif;
 }
 .jumbotron {
     background-color: rgb(202, 24, 0);
@@ -21,7 +25,7 @@ body {
     background-color: greenyellow;
 }
 .intern {
-    background-color: hotpink;
+    background-color: skyblue;
 }
 .card-header {
     border-radius: 15px 15px 0 0 !important;
